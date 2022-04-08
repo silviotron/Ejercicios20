@@ -15,31 +15,53 @@ import java.util.Map;
 public class Ayuntamiento {
     
     private final String nombre;
-    private Map<String, Autobus> autobuses;
-    private Map<String, Metro> metros;
+    private Map<String, Transporte> transportes;
 
     public Ayuntamiento(String nombre) {
         this.nombre = nombre;
-        this.autobuses = new HashMap<>();
-        this.metros = new HashMap<>();
+        this.transportes = new HashMap<>();
     }
     
-    public boolean add(Autobus o){
-        if(autobuses.containsKey(o.getId())){
-            this.autobuses.put(o.getId(), o);
+    public boolean add(Transporte o){
+        if(!transportes.containsKey(o.getId())){
+            this.transportes.put(o.getId(), o);
             return true;
         }else{
             return false;
-        }
-    }
-    public boolean add(Metro o){
-        if(autobuses.containsKey(o.getId())){
-            this.metros.put(o.getId(), o);
+        }            
+
+    }      
+
+    public boolean remove(String s){
+        if(transportes.containsKey(s)){
+            this.transportes.remove(s);
             return true;
         }else{
             return false;
-        }
+        }            
+
     }
+    
+    public static void setPrecioAutobus(double precio){
+        Autobus.setPrecio(precio);
+    }
+    public static void setPrecioMetro(double precio){
+        Metro.setPrecio(precio);
+    }
+
+    public double getRecaudacion(){
+        double total = 0;
+        for (String key : transportes.keySet()) {
+            total+= transportes.get(key).getMonedero();
+        }
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " - " + transportes;
+    }
+
 
     
     

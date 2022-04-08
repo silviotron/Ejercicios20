@@ -5,6 +5,9 @@
  */
 package ejercicios20;
 
+import ejercicios20.classes.Metro;
+import ejercicios20.classes.Transporte;
+
 /**
  *
  * @author alumno
@@ -15,7 +18,7 @@ public class Ejercicios20 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Transporte si = new Metro("","",4,4, true);
     }
     
 }
